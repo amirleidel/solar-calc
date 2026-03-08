@@ -444,7 +444,7 @@
                                         
                                       </div>-->
                                       <div class="col-auto">
-                                        <a href="#" class="btn btn-primary btn-3" id="to-pumpe">
+                                        <a class="btn btn-primary btn-3" id="to-pumpe">
                                           Weiter
                                           <!-- Download SVG icon from http://tabler.io/icons/icon/arrow-right -->
                                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-end icon-2">
@@ -465,7 +465,7 @@
                             <label class="form-label">Gebäudekategorie</label>
                             <div class="form-selectgroup">
                                 <label class="form-selectgroup-item">
-                                  <input type="radio" name="icons" value="home" class="form-selectgroup-input" checked="">
+                                  <input type="radio" name="home-type" value="cat-1" class="form-selectgroup-input" checked="">
                                   <span class="form-selectgroup-label"><!-- Download SVG icon from http://tabler.io/icons/icon/home -->
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon me-1 icon-3">
                                       <path d="M5 12l-2 0l9 -9l9 9l-2 0"></path>
@@ -475,24 +475,24 @@
                                     Passivhaus</span>
                                 </label>
                                 <label class="form-selectgroup-item">
-                                  <input type="radio" name="icons" value="user" class="form-selectgroup-input">
+                                  <input type="radio" name="home-type" value="cat-2" class="form-selectgroup-input">
                                   <span class="form-selectgroup-label"><!-- Download SVG icon from http://tabler.io/icons/icon/user -->
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon me-1 icon-3">
                                       <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path>
                                       <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
                                     </svg>
-                                    User</span>
+                                    Niedrigenergiehaus</span>
                                 </label>
                                 <label class="form-selectgroup-item">
-                                  <input type="radio" name="icons" value="circle" class="form-selectgroup-input">
+                                  <input type="radio" name="home-type" value="cat-3" class="form-selectgroup-input">
                                   <span class="form-selectgroup-label"><!-- Download SVG icon from http://tabler.io/icons/icon/circle -->
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon me-1 icon-3">
                                       <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
                                     </svg>
-                                    Circle</span>
+                                    Normal</span>
                                 </label>
                                 <label class="form-selectgroup-item">
-                                  <input type="radio" name="icons" value="square" class="form-selectgroup-input">
+                                  <input type="radio" name="home-type" value="cat-4" class="form-selectgroup-input">
                                   <span class="form-selectgroup-label"><!-- Download SVG icon from http://tabler.io/icons/icon/square -->
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon me-1 icon-3">
                                       <path d="M3 3m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z"></path>
@@ -501,8 +501,8 @@
                                 </label>
                               </div>
                               
-                              <div class="form-label">Beheizte Wohnfläche (m²)</div>
-                              <input type="range" class="form-range mb-2" value="100" min="0" max="400" step="10">
+                              <div class="form-label">Beheizte Wohnfläche: <span id="area-display"> 100 </span> m² </div>
+                              <input type="range" id="area-select" class="form-range mb-2" value="100" min="0" max="400" step="10">
                               <div class="d-flex justify-content-between small text-secondary"
                                 style="padding-left:6px;padding-right:6px;">
                                   <span>0</span>
@@ -518,20 +518,20 @@
                               
                               <div class="form-label">Wirkungsgrad</div>
                               <div class="input-group mb-2">
-                                <input type="text" class="form-control"
+                                <input id="heating-efficiency-input" type="text" class="form-control"
                                   autocomplete="off" value="250"/>
                                 <span class="input-group-text"> % </span>
                               </div>
                               
                               <div class="form-label">Heizenergiebedarf</div>
                               <div class="input-group mb-2">
-                                <input type="text" class="form-control" placeholder=""
+                                <input type="text" id="energy-use-display" class="form-control" placeholder=""
                                   autocomplete="off" />
                                 <span class="input-group-text"> kWh/a </span>
                               </div>
                               
                               <div class="col-auto">
-                                <a href="#" class="btn btn-primary btn-3" id="to-pumpe">
+                                <a class="btn btn-primary btn-3" id="to-results">
                                   Fertig
                                   <!-- Download SVG icon from http://tabler.io/icons/icon/arrow-right -->
                                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-end icon-2">
@@ -559,7 +559,7 @@
             </div>
           </div>
           <div class="col-sm-12 col-lg-6">
-                <div class="card">
+                <div class="card" id="results-card">
                   <div class="card-body">
                     <div class="steps" style="margin-left: 0;padding-left: 0;border-left: none;">
                       <a href="#" class="step-item"> Step 1 </a>

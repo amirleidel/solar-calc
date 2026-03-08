@@ -18,6 +18,12 @@ document.getElementById("to-pumpe").addEventListener("click", function () {
 
 });
 
+document.getElementById("to-results").addEventListener("click", function () {
+
+  document.getElementById("results-card").scrollIntoView({block: "center"});
+
+});
+
 // model storing all the vars
 const model = {
   persons: 1,
@@ -28,8 +34,10 @@ const model = {
   peak_power: 10,
   solar_type : "poly",
   heading: 180,
-  tilt : 33
-  
+  tilt : 33,
+  home_area : 100,
+  home_type : "cat-1",
+  heating_efficiency : 2.5
 };
 
 const usageByPeople = {
@@ -309,3 +317,77 @@ document.getElementById("tilt-select").addEventListener("change", function () {
     updateAnnualEnergyDisplay(model);
     
 });
+
+
+document.getElementById("area-select").addEventListener("input", function () {
+
+    const areaValue = parseInt(this.value);
+    
+    document.getElementById("area-display").innerText = areaValue;
+    updateHeatingEnergyDisplay(model);
+});
+
+document.getElementById("area-select").addEventListener("change", function () {
+
+    const areaValue = parseInt(this.value);
+    
+    model.home_area = areaValue;
+    updateHeatingEnergyDisplay(model);
+
+});
+
+// building heating type
+  
+const buildingTypeRadios = document.querySelectorAll('input[name="home-type"]');
+
+buildingTypeRadios.forEach(radio => {
+  radio.addEventListener("change", function () {
+    if (this.checked) {
+      model.home_type = this.value; // "cat-1" to ... "cat-4"
+      
+      updateHeatingEnergyDisplay(model);
+    }
+  });
+});
+
+document.getElementById("heating-efficiency-input").addEventListener("input", function () {
+
+    const heatingEfficiencyValue = parseInt(this.value);
+    
+    model.heating_efficiency = heatingEfficiencyValue/100;
+    updateHeatingEnergyDisplay(model);
+    
+});
+
+// Energy per area table
+const energyPerArea = {  // kWh/a/m²
+  "cat-1": 25,
+  "cat-2": 40,
+  "cat-3": 70,
+  "cat-4": 150
+};
+
+// calculate heating energy
+function calculateHeatingEnergy(model) {
+  const perArea = energyPerArea[model.home_type]; // kWh/m²/a
+  if (perArea === undefined) {
+    console.warn("Unknown home type:", model.home_type);
+    return 0;
+  }
+
+  const area = model.home_area || 0;
+  const efficiency = model.heating_efficiency || 1;
+
+  const energy = (perArea * area) / efficiency;
+
+  return energy;
+}
+
+// update input field
+function updateHeatingEnergyDisplay(model) {
+  const energy = calculateHeatingEnergy(model);
+  const inputField = document.getElementById("energy-use-display");
+
+  // format nicely with thousand separator
+  inputField.value = Math.round(energy); //.toLocaleString("de-DE");
+}
