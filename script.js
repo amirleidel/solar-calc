@@ -26,6 +26,8 @@ document.getElementById("to-pumpe").addEventListener("click", function () {
         document.getElementById("results-card").scrollIntoView({block: "center"});
         document.getElementById("steps-open-2").classList.remove("active");
         document.getElementById("steps-finish").classList.add("active");
+        // finish calculations here
+        finish(model,prices,investments);
     }
 
 });
@@ -35,7 +37,8 @@ document.getElementById("to-results").addEventListener("click", function () {
   document.getElementById("results-card").scrollIntoView({block: "center"});
   document.getElementById("steps-open-3").classList.remove("active");
   document.getElementById("steps-finish").classList.add("active");
-
+  // finish calculations here
+  finish(model,prices,investments);
 });
 
 const batteryStorageCostInput = document.getElementById("battery-storage-cost-input");
@@ -584,16 +587,27 @@ const investments = {
     storage : 0
 }
 
-function calculateCosts(model,prices) {
+function calculateCosts(model,prices,investments) {
   
   results.energy_cost = (results.total_use-results.own_use)*prices.energy;
   results.energy_earnings = results.sold*prices.feedIn;
   results.energy_total = results.energy_earnings - results.energy_cost // if positive earnings
-  results.energy_total_without = results.total_use*prices.energy;
+  results.energy_total_without = -results.total_use*prices.energy;
   results.savings = results.energy_total - results.energy_total_without;
-  //results.amortisation : 0
+  results.amortisation = Math.round((investments.solar + investments.heat_pump + investments.storage)/results.savings);
   
 }
 
 
-
+function finish(model,prices,investments) {
+  calculateTotalUse(model);
+  calculateEnergyFlow(model);
+  calculateCosts(model,prices,investments);
+  
+  document.getElementById("energy-cost-display").innerText = Math.round(results.energy_cost);
+  document.getElementById("savings-display").innerText = Math.round(results.savings);
+  document.getElementById("energy-earnings-display").innerText = Math.round(results.energy_earnings);
+  document.getElementById("amortisation-display").innerText = Math.round(results.amortisation);
+  
+  
+}
