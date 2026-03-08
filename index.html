@@ -36,7 +36,7 @@
     >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <!-- BEGIN NAVBAR LOGO --><a href="../../.." aria-label="Tabler" class="navbar-brand navbar-brand-autodark me-3"><svg id="logo-35" width="50" height="39" viewBox="0 0 50 39" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M16.4992 2H37.5808L22.0816 24.9729H1L16.4992 2Z" class="ccompli1" fill="#2fb344"></path> <path d="M17.4224 27.102L11.4192 36H33.5008L49 13.0271H32.7024L23.2064 27.102H17.4224Z" class="ccustom" fill="#217d30"></path> </svg>PV-Rechner</a><!-- END NAVBAR LOGO -->
+    <!-- BEGIN NAVBAR LOGO --><a href="./" aria-label="Tabler" class="navbar-brand navbar-brand-autodark me-3"><svg id="logo-35" width="50" height="39" viewBox="0 0 50 39" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M16.4992 2H37.5808L22.0816 24.9729H1L16.4992 2Z" class="ccompli1" fill="#2fb344"></path> <path d="M17.4224 27.102L11.4192 36H33.5008L49 13.0271H32.7024L23.2064 27.102H17.4224Z" class="ccustom" fill="#217d30"></path> </svg>PV-Rechner</a><!-- END NAVBAR LOGO -->
     <ul class="navbar-nav">
       <li class="nav-item active">
         <a class="nav-link" href="#">
@@ -51,7 +51,7 @@
         <a class="nav-link" href="./info.html">
           <span class="nav-link-icon"
             ><!-- Download SVG icon from http://tabler.io/icons/icon/checkbox -->
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-1"><path d="M9 11l3 3l8 -8" /><path d="M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9" /></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-1"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" /><path d="M12 9h.01" /><path d="M11 12h1v4h1" /></svg>
           </span>
           <span class="nav-link-title"> Info </span>
         </a>
@@ -60,7 +60,7 @@
         <a class="nav-link" href="https://github.com/amirleidel/solar-calc">
           <span class="nav-link-icon"
             ><!-- Download SVG icon from http://tabler.io/icons/icon/checkbox -->
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-1"><path d="M9 11l3 3l8 -8" /><path d="M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9" /></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-1"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" /></svg>
           </span>
           <span class="nav-link-title"> Source Code </span>
         </a>
@@ -183,7 +183,19 @@
                         </li>
                       </ul>
                       <div class="tab-content">
-                        <div id="tab-top-1" class="card tab-pane active show">
+                        <style>
+                        .tab-pane.fade {
+                          opacity: 0;
+                          transform: translateY(5px);
+                          transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+                        }
+
+                        .tab-pane.fade.show {
+                          opacity: 1;
+                          transform: translateY(0);
+                        }
+                        </style>
+                        <div id="tab-top-1" class="card fade tab-pane active show">
                           <div class="card-body">
                             
                               <div class="form-label">Anzahl Bewohner</div>
@@ -266,7 +278,7 @@
                             
                           </div>
                         </div>
-                        <div id="tab-top-2" class="card tab-pane">
+                        <div id="tab-top-2" class="card fade tab-pane">
                           <div class="card-body">
                             
                               <div class="form-label">Art der Anlage</div>
@@ -309,7 +321,7 @@
                               
                               
                               
-                              <div class="form-label">Leistung (kWp)</div>
+                              <div class="form-label">Leistung: <span id="peak-power-display"> 10 </span> kWp </div>
                                 <input id="peak-power-select" 
                                   type="range"
                                   class="form-range mb-2"
@@ -332,7 +344,7 @@
                             <label class="form-label">Solarpanel-Typ</label>
                             <div class="form-selectgroup">
                                 <label class="form-selectgroup-item">
-                                  <input type="radio" name="icons" value="poly" class="form-selectgroup-input" checked />
+                                  <input type="radio" name="solar-type" id="solar-poly" value="poly" class="form-selectgroup-input" checked />
                                   <span class="form-selectgroup-label"><!-- Download SVG icon from http://tabler.io/icons/icon/home -->
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon me-1 icon-3">
                                       <path d="M5 12l-2 0l9 -9l9 9l-2 0"></path>
@@ -342,7 +354,7 @@
                                     Polykristallin</span>
                                 </label>
                                 <label class="form-selectgroup-item">
-                                  <input type="radio" name="icons" value="mono" class="form-selectgroup-input" />
+                                  <input type="radio" name="solar-type" id="solar-mono" value="mono" class="form-selectgroup-input" />
                                   <span class="form-selectgroup-label"><!-- Download SVG icon from http://tabler.io/icons/icon/user -->
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon me-1 icon-3">
                                       <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path>
@@ -353,23 +365,19 @@
                               </div>
                               
                                 
-                              <div class="form-label">Ausrichtung</div>
-                              <input type="range" class="form-range mb-2" value="180" min="0" max="360" step="10">
+                              <div class="form-label">Ausrichtung: <span id="heading-display">180</span>° </div>
+                              <input type="range" id="heading-select" class="form-range mb-2" value="180" min="0" max="360" step="10">
 
                               <div class="d-flex justify-content-between small text-secondary"
                                 style="padding-left:6px;padding-right:6px;">
                                   <span>0°</span>
-                                  <span>30°</span>
-                                  <span>60°</span>
+                                  <span>45°</span>
                                   <span>90°</span>
-                                  <span>120°</span>
-                                  <span>150°</span>
+                                  <span>135°</span>
                                   <span>180°</span>
-                                  <span>210°</span>
-                                  <span>240°</span>
+                                  <span>225°</span>
                                   <span>270°</span>
-                                  <span>300°</span>
-                                  <span>330°</span>
+                                  <span>315°</span>
                                   <span>360°</span>
                               </div>
                               <div class="d-flex justify-content-between small text-secondary"
@@ -381,8 +389,8 @@
                                   <span>N</span>
                               </div>
                               
-                              <div class="form-label">Neigung</div>
-                              <input type="range" class="form-range mb-2" value="33" min="0" max="90" step="1">
+                              <div class="form-label">Neigung: <span id="tilt-display">33</span>° </div>
+                              <input type="range" id="tilt-select" class="form-range mb-2" value="33" min="0" max="90" step="1">
                               <div class="d-flex justify-content-between small text-secondary"
                                 style="padding-left:6px;padding-right:6px;">
                                   <span>0°</span>
@@ -396,8 +404,8 @@
                               
                               <div class="form-label">Geschätzter Energiegewinn</div>
                               <div class="input-group mb-2">
-                                <input type="text" class="form-control" placeholder=""
-                                  autocomplete="off" />
+                                <input type="text" id="annual-energy-display" class="form-control" placeholder=""
+                                  autocomplete="off" value="11154" />
                                 <span class="input-group-text"> kWh/a </span>
                               </div>
                               
@@ -413,7 +421,7 @@
                                         
                                       </div>-->
                                       <div class="col-auto">
-                                        <a href="#" class="btn btn-primary btn-3">
+                                        <a href="#" class="btn btn-primary btn-3" id="to-pumpe">
                                           Weiter
                                           <!-- Download SVG icon from http://tabler.io/icons/icon/arrow-right -->
                                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-end icon-2">
@@ -429,7 +437,7 @@
                             
                           </div>
                         </div>
-                        <div id="tab-top-3" class="card tab-pane">
+                        <div id="tab-top-3" class="card fade tab-pane">
                           <div class="card-body">
                             <label class="form-label">Gebäudekategorie</label>
                             <div class="form-selectgroup">
@@ -497,6 +505,19 @@
                                 <input type="text" class="form-control" placeholder=""
                                   autocomplete="off" />
                                 <span class="input-group-text"> kWh/a </span>
+                              </div>
+                              
+                              <div class="col-auto">
+                                <a href="#" class="btn btn-primary btn-3" id="to-pumpe">
+                                  Fertig
+                                  <!-- Download SVG icon from http://tabler.io/icons/icon/arrow-right -->
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-end icon-2">
+                                    <path d="M5 12l14 0"></path>
+                                    <path d="M13 18l6 -6"></path>
+                                    <path d="M13 6l6 6"></path>
+                                  </svg>
+                                  
+                                </a>
                               </div>
                               
                               

@@ -7,14 +7,27 @@ document.getElementById("to-anlage").addEventListener("click", function () {
 
 });
 
+document.getElementById("to-pumpe").addEventListener("click", function () {
+
+  const tabTrigger = document.querySelector('a[href="#tab-top-3"]');
+  const tab = new bootstrap.Tab(tabTrigger);
+
+  tab.show();
+
+});
 
 // model storing all the vars
 const model = {
   persons: 1,
   consumption: 2000,
-  state: null,
-  latitude: null,
-  sun_hours: null
+  state: 'Baden-Württemberg',
+  latitude: 48.78,
+  sun_hours: 1859,
+  peak_power: 10,
+  solar_type : "poly",
+  heading: 180,
+  tilt : 33
+  
 };
 
 const usageByPeople = {
@@ -163,10 +176,134 @@ document.getElementById("state-select").addEventListener("change", function () {
   model.latitude = latitude;
   model.sun_hours = sunHours;
 
-  console.log(model);
+  updateAnnualEnergyDisplay(model);
 
 });
 
 // document.getElementById(peak-power-select).value
 
 
+document.getElementById("peak-power-select").addEventListener("input", function () {
+
+    const peakPower = parseInt(this.value);
+    
+    document.getElementById("peak-power-display").innerText = peakPower;
+    
+});
+
+document.getElementById("peak-power-select").addEventListener("change", function () {
+
+    const peakPower = parseInt(this.value);
+    
+    model.peak_power = peakPower;
+    
+    updateAnnualEnergyDisplay(model);
+    
+    console.log(model.peak_power);
+    
+});
+
+// get if solar is poly or mono
+  
+const solarTypeRadios = document.querySelectorAll('input[name="solar-type"]');
+
+solarTypeRadios.forEach(radio => {
+  radio.addEventListener("change", function () {
+    if (this.checked) {
+      model.solarType = this.value; // "mono" or "poly"
+      console.log("Solar type selected:", model.solarType);
+      console.log("Solar type selected:", model);
+      // TODO : add poly-mono distinction
+      //
+      //
+      updateAnnualEnergyDisplay(model);
+    }
+  });
+});
+
+function interpolate(x, x0, y0, x1, y1) {
+  const m = (y1 - y0) / (x1 - x0);
+  const t = y0 - m * x0;
+  return m * x + t;
+}
+
+function interpolateFacingEffectivity(degrees) {
+  if (0 <= degrees && degrees < 90) {
+    return interpolate(degrees, 0, 0.6, 90, 0.9);
+  } else if (90 <= degrees && degrees < 180) {
+    return interpolate(degrees, 90, 0.9, 180, 1.0);
+  } else if (180 <= degrees && degrees < 270) {
+    return interpolate(degrees, 180, 1.0, 270, 0.9);
+  } else if (270 <= degrees && degrees <= 360) {
+    return interpolate(degrees, 270, 0.9, 360, 0.6);
+  } else {
+    // optional: clamp out-of-range values
+    console.warn("Degrees out of range 0-360:", degrees);
+    return 0.6; // default minimum
+  }
+}
+
+function tiltEffectivity(degreesTilt, optimumTilt = 33) {
+  // convert to radians and take cosine
+  const radians = (degreesTilt - optimumTilt) * Math.PI / 180;
+  return Math.cos(radians);
+}
+
+function calculateAnnualEnergy(model) {
+  // facing
+  const facingEff = interpolateFacingEffectivity(model.heading); // 0.6-1.0
+  // tilt
+  const tiltEff = tiltEffectivity(model.tilt); // 0-1
+  // combined effectivity
+  const effectivity = 0.6 * facingEff * tiltEff; // factor 0.6 as per Python comment
+
+  // energy in kWh
+  const energy = model.sun_hours * model.peak_power * effectivity;
+
+  return energy;
+}
+
+// update input field
+function updateAnnualEnergyDisplay(model) {
+  const energy = calculateAnnualEnergy(model);
+  const inputField = document.getElementById("annual-energy-display");
+
+  // format nicely, optional thousand separator
+  inputField.value = Math.round(energy); //.toLocaleString("de-DE");
+}
+
+document.getElementById("heading-select").addEventListener("input", function () {
+
+    const headingValue = parseInt(this.value);
+    
+    document.getElementById("heading-display").innerText = headingValue;
+    
+});
+
+document.getElementById("heading-select").addEventListener("change", function () {
+
+    const headingValue = parseInt(this.value);
+    
+    model.heading = headingValue;
+    
+    updateAnnualEnergyDisplay(model);
+    
+});
+
+document.getElementById("tilt-select").addEventListener("input", function () {
+
+    const tiltValue = parseInt(this.value);
+    
+    document.getElementById("tilt-display").innerText = tiltValue;
+    
+});
+
+document.getElementById("tilt-select").addEventListener("change", function () {
+
+    const tiltValue = parseInt(this.value);
+    
+    model.tilt = tiltValue;
+    
+    updateAnnualEnergyDisplay(model);
+    
+});
