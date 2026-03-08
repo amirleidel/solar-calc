@@ -5,24 +5,67 @@ document.getElementById("to-anlage").addEventListener("click", function () {
 
   tab.show();
   document.getElementById("selection-card").scrollIntoView({block: "center"});
+  document.getElementById("steps-open-1").classList.remove("active");
+  document.getElementById("steps-open-2").classList.add("active");
 
 });
 
 document.getElementById("to-pumpe").addEventListener("click", function () {
+    
+    if (model.heat_pump == 1) { // when there is a heat pump
+    const tabTrigger = document.querySelector('a[href="#tab-top-3"]');
+    const tab = new bootstrap.Tab(tabTrigger);
 
-  const tabTrigger = document.querySelector('a[href="#tab-top-3"]');
-  const tab = new bootstrap.Tab(tabTrigger);
-
-  tab.show();
-  document.getElementById("selection-card").scrollIntoView({block: "center"});
+    tab.show();
+    document.getElementById("selection-card").scrollIntoView({block: "center"});
+    document.getElementById("steps-open-2").classList.remove("active");
+    document.getElementById("steps-open-3").classList.add("active");
+        
+    }
+    else { // default, when there is no heat pump, go straight to results
+        document.getElementById("results-card").scrollIntoView({block: "center"});
+        document.getElementById("steps-open-2").classList.remove("active");
+        document.getElementById("steps-open-4").classList.add("active");
+    }
 
 });
 
 document.getElementById("to-results").addEventListener("click", function () {
 
   document.getElementById("results-card").scrollIntoView({block: "center"});
+  document.getElementById("steps-open-3").classList.remove("active");
+  document.getElementById("steps-open-4").classList.add("active");
 
 });
+
+document.getElementById("battery-storage-switch").addEventListener("change", function () {
+    if (this.checked) {
+        model.battery_storage = 1;
+    } else {
+        model.battery_storage = 0;
+    }
+});
+
+const heatPumpSwitch = document.getElementById("heat-pump-switch");
+const heatPumpTab = document.getElementById("heat-pump-tab");
+
+heatPumpSwitch.addEventListener("change", function () {
+    if (this.checked) {
+        model.heat_pump = 1;
+        document.getElementById("to-pumpe-text").innerText = "Weiter";
+        heatPumpTab.classList.remove("disabled");
+        heatPumpTab.removeAttribute("tabindex");
+        heatPumpTab.removeAttribute("aria-disabled");
+        
+    } else {
+        model.heat_pump = 0;
+        document.getElementById("to-pumpe-text").innerText = "Fertig";
+        heatPumpTab.classList.add("disabled");
+        heatPumpTab.setAttribute("tabindex", "-1");
+        heatPumpTab.setAttribute("aria-disabled", "true");
+    }
+});
+
 
 // model storing all the vars
 const model = {
@@ -37,7 +80,10 @@ const model = {
   tilt : 33,
   home_area : 100,
   home_type : "cat-1",
-  heating_efficiency : 2.5
+  heating_efficiency : 2.5,
+  battery_storage : 0,
+  heat_pump : 0,
+  feedInType : 1
 };
 
 const usageByPeople = {
@@ -231,6 +277,21 @@ solarTypeRadios.forEach(radio => {
   });
 });
 
+// get if solar feed in type
+  
+const feedInRadios = document.querySelectorAll('input[name="feed-in-type"]');
+
+feedInRadios.forEach(radio => {
+  radio.addEventListener("change", function () {
+    if (this.checked) {
+      model.feedInType = this.value; // "1" or "0"
+      
+      console.log(model.feedInType);
+      updateAnnualEnergyDisplay(model);
+    }
+  });
+});
+
 function interpolate(x, x0, y0, x1, y1) {
   const m = (y1 - y0) / (x1 - x0);
   const t = y0 - m * x0;
@@ -386,8 +447,63 @@ function calculateHeatingEnergy(model) {
 // update input field
 function updateHeatingEnergyDisplay(model) {
   const energy = calculateHeatingEnergy(model);
+  results.heating_energy = energy;
+  
   const inputField = document.getElementById("energy-use-display");
 
   // format nicely with thousand separator
   inputField.value = Math.round(energy); //.toLocaleString("de-DE");
+}
+
+const results = {
+  heating_energy: 0,
+  total_use: 0,
+  own_use: 0,
+  sold: 0
+};
+
+// electrical energy use percentagess
+const usePercentage = {
+  with_storage: 0.8,
+  without_storage: 0.3,
+  no_own_use: 0.0
+};
+
+function calculateTotalUse(model) {
+
+  const heating_energy = calculateHeatingEnergy(model);
+  const usage = model.consumption;
+  
+  results.total_use = heating_energy + usage;
+
+}
+
+function calculateEnergyFlow(model, energy) {
+
+  const total_use = results.total_use;
+
+  let percentage;
+
+  if (model.battery_storage == 1) {
+    percentage = usePercentage.with_storage;
+  } 
+  else {
+    percentage = usePercentage.without_storage;
+  } 
+  
+  if (model.feedInType == 0) {
+    percentage = usePercentage.no_own_use;
+  }
+
+  let own_use = energy * percentage;
+
+  // limit own use to household demand
+  if (own_use > total_use) {
+    own_use = total_use;
+  }
+
+  const sold = energy - own_use;
+
+  results.own_use = own_use;
+  results.sold = sold;
 }
