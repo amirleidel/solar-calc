@@ -4,6 +4,7 @@ document.getElementById("to-anlage").addEventListener("click", function () {
   const tab = new bootstrap.Tab(tabTrigger);
 
   tab.show();
+  document.getElementById("selection-card").scrollIntoView({block: "center"});
 
 });
 
@@ -13,6 +14,7 @@ document.getElementById("to-pumpe").addEventListener("click", function () {
   const tab = new bootstrap.Tab(tabTrigger);
 
   tab.show();
+  document.getElementById("selection-card").scrollIntoView({block: "center"});
 
 });
 
