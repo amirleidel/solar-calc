@@ -1,0 +1,723 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/core@1.4.0/dist/css/tabler.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    
+    <style>
+      :root {
+        --tblr-font-sans-serif: "Noto Sans";
+        --tblr-primary: #2fb344;
+        --tblr-border-radius-scale: 2;
+      }
+    </style>
+
+    <title>Tabler demo</title>
+</head>
+
+<body>
+<div class="page">
+    <header class="navbar navbar-expand-md d-print-none">
+    <div class="container-xl">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbar-menu"
+      aria-controls="navbar-menu"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- BEGIN NAVBAR LOGO --><a href="../../.." aria-label="Tabler" class="navbar-brand navbar-brand-autodark me-3"><svg id="logo-35" width="50" height="39" viewBox="0 0 50 39" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M16.4992 2H37.5808L22.0816 24.9729H1L16.4992 2Z" class="ccompli1" fill="#2fb344"></path> <path d="M17.4224 27.102L11.4192 36H33.5008L49 13.0271H32.7024L23.2064 27.102H17.4224Z" class="ccustom" fill="#217d30"></path> </svg>PV-Rechner</a><!-- END NAVBAR LOGO -->
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">
+          <span class="nav-link-icon">
+            <!-- Download SVG icon from http://tabler.io/icons/icon/home -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-1"><path d="M5 12l-2 0l9 -9l9 9l-2 0" /><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" /><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" /></svg>
+          </span>
+          <span class="nav-link-title"> Home </span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <span class="nav-link-icon"
+            ><!-- Download SVG icon from http://tabler.io/icons/icon/checkbox -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-1"><path d="M9 11l3 3l8 -8" /><path d="M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9" /></svg>
+          </span>
+          <span class="nav-link-title"> Settings </span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <span class="nav-link-icon"
+            ><!-- Download SVG icon from http://tabler.io/icons/icon/checkbox -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-1"><path d="M9 11l3 3l8 -8" /><path d="M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9" /></svg>
+          </span>
+          <span class="nav-link-title"> Info </span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <span class="nav-link-icon"
+            ><!-- Download SVG icon from http://tabler.io/icons/icon/checkbox -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-1"><path d="M9 11l3 3l8 -8" /><path d="M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9" /></svg>
+          </span>
+          <span class="nav-link-title"> Source Code </span>
+        </a>
+      </li>
+    </ul>
+    <div class="navbar-nav flex-row order-md-last ms-auto">
+      <div class="nav-item dropdown">
+        <a
+          href="#"
+          class="nav-link d-flex lh-1 text-reset"
+          data-bs-toggle="dropdown"
+          aria-label="Open user menu"
+        >
+          <span
+            class="avatar avatar-sm"
+            style="background-image: url(/static/avatars/044m.jpg)"
+          ></span>
+          <div class="d-none d-xl-block ps-2">
+            <div>Paweł Kuna</div>
+            <div class="mt-1 small text-secondary">UI Designer</div>
+          </div>
+        </a>
+        <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+          <a href="#" class="dropdown-item">Status</a>
+          <a href="./profile.html" class="dropdown-item">Profile</a>
+          <a href="#" class="dropdown-item">Feedback</a>
+          <div class="dropdown-divider"></div>
+          <a href="./settings.html" class="dropdown-item">Settings</a>
+          <a href="./sign-in.html" class="dropdown-item">Logout</a>
+        </div>
+      </div>
+    </div>
+    </div>
+    </header>
+    <div class="page-wrapper">
+    
+    <div class="page-header">
+    <div class="container-xl">
+      <div class="row align-items-center">
+        <div class="col">
+          <div class="page-pretitle">Overview</div>
+          <h2 class="page-title">Rechner</h2>
+        </div>
+        <div class="col-auto ms-auto">
+          <div class="btn-list">
+            <span class="d-none d-sm-inline">
+              <a href="#" class="btn"> Drucken </a>
+            </span>
+            <a
+              href="#"
+              class="btn btn-primary d-none d-sm-inline-block"
+              data-bs-toggle="modal"
+              data-bs-target="#modal-report"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+              Zurücksetzen
+            </a>
+            <a
+              href="#"
+              class="btn btn-primary d-sm-none btn-icon"
+              data-bs-toggle="modal"
+              data-bs-target="#modal-report"
+              aria-label="Create new report"
+            http://localhost:2323/#>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <div class="page-body">
+    
+      <div class="container-xl">
+        <div class="row row-deck row-cards">
+          <div class="col-sm-12 col-lg-6">
+            <div class="row row-cards">
+                <div class="col-12">
+                    <div class="card-tabs">
+                      <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                          <a href="#tab-top-1" class="nav-link active" data-bs-toggle="tab">Haushalt</a>
+                        </li>
+                        <li class="nav-item">
+                          <a href="#tab-top-2" class="nav-link" data-bs-toggle="tab">Anlage</a>
+                        </li>
+                        <li class="nav-item">
+                          <a href="#tab-top-3" class="nav-link" data-bs-toggle="tab">Wärmepumpe</a>
+                        </li>
+                      </ul>
+                      <div class="tab-content">
+                        <div id="tab-top-1" class="card tab-pane active show">
+                          <div class="card-body">
+                            
+                              <div class="form-label">Anzahl Bewohner</div>
+                              <div class="btn-group w-100" role="group">
+                                        <input type="radio" class="btn-check" name="btn-radio-dropdown" id="btn-radio-dropdown-1" autocomplete="off" checked="">
+                                        <label for="btn-radio-dropdown-1" type="button" class="btn"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-user"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" /><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /></svg>1</label>
+                                        <input type="radio" class="btn-check" name="btn-radio-dropdown" id="btn-radio-dropdown-2" autocomplete="off">
+                                        <label for="btn-radio-dropdown-2" type="button" class="btn"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-users"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" /><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /><path d="M21 21v-2a4 4 0 0 0 -3 -3.85" /></svg>2</label>
+                                        <input type="radio" class="btn-check" name="btn-radio-dropdown" id="btn-radio-dropdown-3" autocomplete="off">
+                                        <label for="btn-radio-dropdown-3" type="button" class="btn"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-users-group"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1" /><path d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M17 10h2a2 2 0 0 1 2 2v1" /><path d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M3 13v-1a2 2 0 0 1 2 -2h2" /></svg>3</label>
+                                        <input type="radio" class="btn-check" name="btn-radio-dropdown" id="btn-radio-dropdown-4" autocomplete="off">
+                                        <label for="btn-radio-dropdown-4" type="button" class="btn"> <?xml version="1.0" encoding="utf-8"?>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-users-group">
+                                          <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                          <path d="M 4 13 C 4 14.54 5.667 15.502 7 14.732 C 7.619 14.375 8 13.715 8 13 C 8 11.46 6.333 10.498 5 11.268 C 4.381 11.625 4 12.285 4 13"/>
+                                          <path d="M 14 21 L 14 20 C 14 18.895 14.895 18 16 18 L 20 18 C 21.105 18 22 18.895 22 20 L 22 21"/>
+                                          <path d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"/>
+                                          <path d="M 9.519 10 L 10.76 10 C 11.444 10 12 10.895 12 12 L 12 13" style=""/>
+                                          <path d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"/>
+                                          <path d="M 12 13 L 12 12 C 12 10.895 12.563 10 13.259 10 L 14.518 10" style=""/>
+                                          <path d="M 2.094 21.043 L 2.094 20.043 C 2.094 18.938 2.989 18.043 4.094 18.043 L 8.094 18.043 C 9.198 18.043 10.094 18.938 10.094 20.043 L 10.094 21.043"/>
+                                          <path d="M 16.004 12.942 C 16.004 14.482 17.671 15.444 19.004 14.674 C 19.623 14.317 20.004 13.657 20.004 12.942 C 20.004 11.402 18.337 10.44 17.004 11.21 C 16.385 11.567 16.004 12.227 16.004 12.942"/>
+                                        </svg>4</label>
+                                        
+                                        <div class="btn-group" role="group">
+                                          <input type="radio" class="btn-check" name="btn-radio-dropdown" id="btn-radio-dropdown-dropdown" autocomplete="off">
+                                          <label for="btn-radio-dropdown-dropdown" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Mehr
+                                          </label>
+                                          <div class="dropdown-menu" style="">
+                                            <a class="dropdown-item" href="#"> 5 </a>
+                                            <a class="dropdown-item" href="#"> 6 </a>
+                                            <a class="dropdown-item" href="#"> 7 </a>
+                                            <a class="dropdown-item" href="#"> 8 </a>
+                                            <a class="dropdown-item" href="#"> 9 </a>
+                                          </div>
+                                        </div>
+                                        
+                              </div>
+                              
+                              <div class="form-label">Geschätzter Verbrauch</div>
+                              <div class="input-group mb-2">
+                                <input type="text" class="form-control" placeholder=""
+                                  autocomplete="off" />
+                                <span class="input-group-text"> kWh/a </span>
+                              </div>
+                              
+                              <div class="form-label">Weiteres</div>
+                              <label class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" />
+                                <span class="form-check-label">Batteriespeicher</span>
+                              </label>
+                              <label class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" />
+                                <span class="form-check-label">Wärmepumpe</span>
+                              </label>
+                              
+                              <div class="row align-items-center">
+                                      <!--<div class="col">
+                                      
+                                        <label class="form-check m-0">
+                                          <input class="form-check-input" type="checkbox">
+                                          <span class="form-check-label">Remember me</span>
+                                        </label>
+                                        
+                                      </div>-->
+                                      <div class="col-auto">
+                                        <a href="#" class="btn btn-primary btn-3">
+                                          Weiter
+                                          <!-- Download SVG icon from http://tabler.io/icons/icon/arrow-right -->
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-end icon-2">
+                                            <path d="M5 12l14 0"></path>
+                                            <path d="M13 18l6 -6"></path>
+                                            <path d="M13 6l6 6"></path>
+                                          </svg>
+                                        </a>
+                                      </div>
+                              </div>
+                              
+                            
+                          </div>
+                        </div>
+                        <div id="tab-top-2" class="card tab-pane">
+                          <div class="card-body">
+                            
+                              <div class="form-label">Art der Anlage</div>
+                              <div>
+                                <label class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="radios-inline"
+                                    checked />
+                                  <span class="form-check-label">Überschusseinspeisung</span>
+                                </label>
+                                <label class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="radios-inline" />
+                                  <span class="form-check-label">Volleinspeisung</span>
+                                </label>
+                              </div>
+                              
+                            <label class="form-label">
+                                Standort (Bundesland)
+                                <span class="form-help" data-bs-toggle="popover" data-bs-placement="top"
+                                  data-bs-html="true"
+                                  data-bs-content="<p>ZIP Code must be US or CDN format. You can use an extended ZIP+4 code to determine address more accurately.</p><p class='mb-0'><a href=''>USP ZIP codes lookup tools</a></p>">?</span>
+                              </label>
+                              <select class="form-select">
+                                <option value="1">Baden-Württemberg</option>
+                                <option value="2">Bayern</option>
+                                <option value="3">Berlin</option>
+                                <option value="4">Brandenburg</option>
+                                <option value="5">Bremen</option>
+                                <option value="6">Hamburg</option>
+                                <option value="7">Hessen</option>
+                                <option value="8">Mecklenburg-Vorpommern</option>
+                                <option value="9">Niedersachsen</option>
+                                <option value="10">Nordrhein-Westphalen</option>
+                                <option value="11">Rheinland-Pfalz</option>
+                                <option value="12">Saarland</option>
+                                <option value="13">Sachsen</option>
+                                <option value="14">Sachsen-Anhalt</option>
+                                <option value="15">Schleswig-Holstein</option>
+                                <option value="16">Thüringen</option>
+                              </select>
+                              
+                              
+                              
+                              <div class="form-label">Leistung (kWp)</div>
+                                <input
+                                  type="range"
+                                  class="form-range mb-2"
+                                  min="0"
+                                  max="50"
+                                  step="1"
+                                  value="10"
+                                  list="kwp-ticks"
+                                >
+                                <div class="d-flex justify-content-between small text-secondary"
+                                style="padding-left:6px;padding-right:6px;">
+                                  <span>0</span>
+                                  <span>10</span>
+                                  <span>20</span>
+                                  <span>30</span>
+                                  <span>40</span>
+                                  <span>50</span>
+                                </div>
+                                
+                            <label class="form-label">Solarpanel-Typ</label>
+                            <div class="form-selectgroup">
+                                <label class="form-selectgroup-item">
+                                  <input type="radio" name="icons" value="home" class="form-selectgroup-input" checked>
+                                  <span class="form-selectgroup-label"><!-- Download SVG icon from http://tabler.io/icons/icon/home -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon me-1 icon-3">
+                                      <path d="M5 12l-2 0l9 -9l9 9l-2 0"></path>
+                                      <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path>
+                                      <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"></path>
+                                    </svg>
+                                    Polykristallin</span>
+                                </label>
+                                <label class="form-selectgroup-item">
+                                  <input type="radio" name="icons" value="user" class="form-selectgroup-input">
+                                  <span class="form-selectgroup-label"><!-- Download SVG icon from http://tabler.io/icons/icon/user -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon me-1 icon-3">
+                                      <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path>
+                                      <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
+                                    </svg>
+                                    Monokristallin</span>
+                                </label>
+                              </div>
+                              
+                                
+                              <div class="form-label">Ausrichtung</div>
+                              <input type="range" class="form-range mb-2" value="180" min="0" max="360" step="10">
+
+                              <div class="d-flex justify-content-between small text-secondary"
+                                style="padding-left:6px;padding-right:6px;">
+                                  <span>0°</span>
+                                  <span>30°</span>
+                                  <span>60°</span>
+                                  <span>90°</span>
+                                  <span>120°</span>
+                                  <span>150°</span>
+                                  <span>180°</span>
+                                  <span>210°</span>
+                                  <span>240°</span>
+                                  <span>270°</span>
+                                  <span>300°</span>
+                                  <span>330°</span>
+                                  <span>360°</span>
+                              </div>
+                              <div class="d-flex justify-content-between small text-secondary"
+                                style="padding-left:6px;padding-right:6px;">
+                                  <span>N</span>
+                                  <span>O</span>
+                                  <span>S</span>
+                                  <span>W</span>
+                                  <span>N</span>
+                              </div>
+                              
+                              <div class="form-label">Neigung</div>
+                              <input type="range" class="form-range mb-2" value="33" min="0" max="90" step="1">
+                              <div class="d-flex justify-content-between small text-secondary"
+                                style="padding-left:6px;padding-right:6px;">
+                                  <span>0°</span>
+                                  <span>15°</span>
+                                  <span>30°</span>
+                                  <span>45°</span>
+                                  <span>60°</span>
+                                  <span>75°</span>
+                                  <span>90°</span>
+                              </div>
+                              
+                              <div class="form-label">Geschätzter Energiegewinn</div>
+                              <div class="input-group mb-2">
+                                <input type="text" class="form-control" placeholder=""
+                                  autocomplete="off" />
+                                <span class="input-group-text"> kWh/a </span>
+                              </div>
+                              
+                              
+                              
+                              <div class="row align-items-center">
+                                      <!--<div class="col">
+                                      
+                                        <label class="form-check m-0">
+                                          <input class="form-check-input" type="checkbox">
+                                          <span class="form-check-label">Remember me</span>
+                                        </label>
+                                        
+                                      </div>-->
+                                      <div class="col-auto">
+                                        <a href="#" class="btn btn-primary btn-3">
+                                          Weiter
+                                          <!-- Download SVG icon from http://tabler.io/icons/icon/arrow-right -->
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-end icon-2">
+                                            <path d="M5 12l14 0"></path>
+                                            <path d="M13 18l6 -6"></path>
+                                            <path d="M13 6l6 6"></path>
+                                          </svg>
+                                        </a>
+                                      </div>
+                              </div>
+                              
+                              
+                            
+                          </div>
+                        </div>
+                        <div id="tab-top-3" class="card tab-pane">
+                          <div class="card-body">
+                            <label class="form-label">Gebäudekategorie</label>
+                            <div class="form-selectgroup">
+                                <label class="form-selectgroup-item">
+                                  <input type="radio" name="icons" value="home" class="form-selectgroup-input" checked="">
+                                  <span class="form-selectgroup-label"><!-- Download SVG icon from http://tabler.io/icons/icon/home -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon me-1 icon-3">
+                                      <path d="M5 12l-2 0l9 -9l9 9l-2 0"></path>
+                                      <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path>
+                                      <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"></path>
+                                    </svg>
+                                    Passivhaus</span>
+                                </label>
+                                <label class="form-selectgroup-item">
+                                  <input type="radio" name="icons" value="user" class="form-selectgroup-input">
+                                  <span class="form-selectgroup-label"><!-- Download SVG icon from http://tabler.io/icons/icon/user -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon me-1 icon-3">
+                                      <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path>
+                                      <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
+                                    </svg>
+                                    User</span>
+                                </label>
+                                <label class="form-selectgroup-item">
+                                  <input type="radio" name="icons" value="circle" class="form-selectgroup-input">
+                                  <span class="form-selectgroup-label"><!-- Download SVG icon from http://tabler.io/icons/icon/circle -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon me-1 icon-3">
+                                      <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+                                    </svg>
+                                    Circle</span>
+                                </label>
+                                <label class="form-selectgroup-item">
+                                  <input type="radio" name="icons" value="square" class="form-selectgroup-input">
+                                  <span class="form-selectgroup-label"><!-- Download SVG icon from http://tabler.io/icons/icon/square -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon me-1 icon-3">
+                                      <path d="M3 3m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z"></path>
+                                    </svg>
+                                    Altbau</span>
+                                </label>
+                              </div>
+                              
+                              <div class="form-label">Beheizte Wohnfläche (m²)</div>
+                              <input type="range" class="form-range mb-2" value="100" min="0" max="400" step="10">
+                              <div class="d-flex justify-content-between small text-secondary"
+                                style="padding-left:6px;padding-right:6px;">
+                                  <span>0</span>
+                                  <span>50</span>
+                                  <span>100</span>
+                                  <span>150</span>
+                                  <span>200</span>
+                                  <span>250</span>
+                                  <span>300</span>
+                                  <span>350</span>
+                                  <span>400</span>
+                              </div>
+                              
+                              <div class="form-label">Wirkungsgrad</div>
+                              <div class="input-group mb-2">
+                                <input type="text" class="form-control"
+                                  autocomplete="off" value="250"/>
+                                <span class="input-group-text"> % </span>
+                              </div>
+                              
+                              <div class="form-label">Heizenergiebedarf</div>
+                              <div class="input-group mb-2">
+                                <input type="text" class="form-control" placeholder=""
+                                  autocomplete="off" />
+                                <span class="input-group-text"> kWh/a </span>
+                              </div>
+                              
+                              
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                </div>
+                
+                <div class="col-12">
+                    <div class="card">
+                      <div class="card-body" style="height: 15rem"></div>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div class="col-sm-12 col-lg-6">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="steps" style="margin-left: 0;padding-left: 0;border-left: none;">
+                      <a href="#" class="step-item"> Step 1 </a>
+                      <a href="#" class="step-item"> Step 2 </a>
+                      <a href="#" class="step-item active"> Step 3 </a>
+                      <span href="#" class="step-item"> Step 4 </span>
+                    </div>
+                
+                    <div id="chart-demo-pie" class="position-relative "></div>
+                    <div id="chart-demo-line" class="position-relative "></div>
+                  </div>
+                </div>
+                
+                <script>
+                  document.addEventListener("DOMContentLoaded", function() {
+                    window.ApexCharts && (new ApexCharts(document.getElementById(
+                      'chart-demo-pie'), {
+                      chart: {
+                        type: "donut",
+                        fontFamily: 'inherit',
+                        height: 240,
+                        sparkline: {
+                          enabled: true
+                        },
+                        animations: {
+                          enabled: false
+                        },
+                      },
+                      series: [44, 55, 12, 2],
+                      labels: ["Direct", "Affilliate", "E-mail", "Other"],
+                      tooltip: {
+                        theme: 'dark'
+                      },
+                      grid: {
+                        strokeDashArray: 4,
+                      },
+                      colors: [
+                        'color-mix(in srgb, transparent, var(--tblr-primary) 100%)',
+                        'color-mix(in srgb, transparent, var(--tblr-primary) 80%)',
+                        'color-mix(in srgb, transparent, var(--tblr-primary) 60%)',
+                        'color-mix(in srgb, transparent, var(--tblr-gray-300) 100%)'
+                      ],
+                      legend: {
+                        show: true,
+                        position: 'bottom',
+                        offsetY: 12,
+                        markers: {
+                          width: 10,
+                          height: 10,
+                          radius: 100,
+                        },
+                        itemMargin: {
+                          horizontal: 8,
+                          vertical: 8
+                        },
+                      },
+                      tooltip: {
+                        fillSeriesColor: false
+                      },
+                    })).render();
+                  });
+                </script>
+
+                <script>
+                    document.addEventListener("DOMContentLoaded", function () {
+                        window.ApexCharts && (new ApexCharts(document.getElementById('chart-demo-line'), {
+                            chart: {
+                                type: "line",
+                                fontFamily: 'inherit',
+                                height: 240,
+                                parentHeightOffset: 0,
+                                toolbar: {
+                                    show: false,
+                                },
+                                animations: {
+                                    enabled: false
+                                },
+                            },
+                            stroke: {
+                                width: 2,
+                                lineCap: "round",
+                                curve: "straight",
+                            },
+                            series: [{
+                                name: "Session Duration",
+                                data: [117, 92, 94, 98, 75, 110, 69, 80, 109, 113, 115, 95]
+                            },{
+                                name: "Page Views",
+                                data: [59, 80, 61, 66, 70, 84, 87, 64, 94, 56, 55, 67]
+                            },{
+                                name: "Total Visits",
+                                data: [53, 51, 52, 41, 46, 60, 45, 43, 30, 50, 58, 59]
+                            }],
+                            tooltip: {
+                                theme: 'dark'
+                            },
+                            grid: {
+                                padding: {
+                                    top: -20,
+                                    right: 0,
+                                    left: -4,
+                                    bottom: -4
+                                },
+                                strokeDashArray: 4,
+                            },
+                            xaxis: {
+                                labels: {
+                                    padding: 0,
+                                },
+                                tooltip: {
+                                    enabled: false
+                                },
+                                type: 'datetime',
+                            },
+                            yaxis: {
+                                labels: {
+                                    padding: 4
+                                },
+                            },
+                            labels: [
+                                '2020-06-21', '2020-06-22', '2020-06-23', '2020-06-24', '2020-06-25', '2020-06-26', '2020-06-27', '2020-06-28', '2020-06-29', '2020-06-30', '2020-07-01', '2020-07-02'
+                            ],
+                            colors: [
+                                'color-mix(in srgb, transparent, var(--tblr-yellow) 100%)', 
+                                'color-mix(in srgb, transparent, var(--tblr-green) 100%)', 
+                                'color-mix(in srgb, transparent, var(--tblr-primary) 100%)'
+                            ],
+                            legend: {
+                                show: true,
+                                position: 'bottom',
+                                offsetY: 12,
+                                markers: {
+                                    width: 10,
+                                    height: 10,
+                                    radius: 100,
+                                },
+                                itemMargin: {
+                                    horizontal: 8,
+                                    vertical: 8
+                                },
+                            },
+                        })).render();
+                    });
+                </script>
+                
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <footer class="footer footer-transparent d-print-none">
+          <div class="container-xl">
+            <div class="row text-center align-items-center flex-row-reverse">
+              <div class="col-lg-auto ms-lg-auto">
+                <ul class="list-inline list-inline-dots mb-0">
+                  <li class="list-inline-item"><a href="https://docs.tabler.io" target="_blank" class="link-secondary" rel="noopener">Info</a></li>
+                  <li class="list-inline-item"><a href="./license.html" class="link-secondary">License</a></li>
+                  <li class="list-inline-item">
+                    <a href="https://github.com/tabler/tabler" target="_blank" class="link-secondary" rel="noopener">Source code</a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a href="https://tabler.io/admin-template" target="_blank" class="link-secondary" rel="noopener">
+                      <!-- Download SVG icon from http://tabler.io/icons/icon/heart -->
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon text-pink icon-inline icon-4">
+                        <path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572"></path>
+                      </svg>
+                      Made with Tabler
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-12 col-lg-auto mt-3 mt-lg-0">
+                <ul class="list-inline list-inline-dots mb-0">
+                  <li class="list-inline-item">
+                    Copyright © 2026
+                    <a href="https://ajgl.blog/portfolio" class="link-secondary">Amir Leidel</a>.
+                  </li>
+                  <li class="list-inline-item">
+                    <a href="#" class="link-secondary" rel="noopener"> v1.0.0 </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+    </footer>
+       
+  </div>
+</div>
+</body>
+
+<script
+    src="https://cdn.jsdelivr.net/npm/@tabler/core@1.4.0/dist/js/tabler.min.js">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+</html>
