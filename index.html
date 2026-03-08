@@ -48,6 +48,7 @@
           <a href="./" class="dropdown-item">Home</a>
           <a href="./info.html" class="dropdown-item">Info</a>
           <div class="dropdown-divider"></div>
+          <a href="./license.html" class="dropdown-item">Lizenz</a>
           <a href="https://github.com/amirleidel/solar-calc" class="dropdown-item">Source Code</a>
         </div>
       </div>
@@ -202,7 +203,7 @@
                           <a href="#tab-top-2" class="nav-link" data-bs-toggle="tab">Anlage</a>
                         </li>
                         <li class="nav-item">
-                          <a href="#tab-top-3" id="heat-pump-tab" class="nav-link disabled" data-bs-toggle="tab" tabindex="-1" aria-disabled="true">Wärmepumpe</a>
+                          <a href="#tab-top-3" id="heat-pump-tab" class="nav-link" data-bs-toggle="tab">Wärmepumpe</a>
                         </li>
                       </ul>
                       <div class="tab-content">
@@ -290,11 +291,23 @@
                               <label class="form-check form-switch">
                                 <input class="form-check-input" id="battery-storage-switch" type="checkbox" />
                                 <span class="form-check-label">Batteriespeicher</span>
+                                
                               </label>
+                              <div class="form-label">Anschaffungskosten</div>
+                                    <div class="input-group mb-2">
+                                      <input type="text" id="battery-storage-cost-input" class="form-control" value="--" autocomplete="off" readonly disabled />
+                                      <span class="input-group-text">&#8364;</span>
+                                    </div>
+                                    
                               <label class="form-check form-switch">
-                                <input class="form-check-input" id="heat-pump-switch" type="checkbox" />
+                                <input class="form-check-input" id="heat-pump-switch" type="checkbox" checked />
                                 <span class="form-check-label">Wärmepumpe</span>
                               </label>
+                              <div class="form-label">Anschaffungskosten</div>
+                                    <div class="input-group mb-2">
+                                      <input type="text" id="heat-pump-cost-input" class="form-control" value="15000" autocomplete="off" />
+                                      <span class="input-group-text">&#8364;</span>
+                                    </div>
                               
                               <div class="row align-items-center">
                                       <!--<div class="col">
@@ -336,6 +349,13 @@
                                   <span class="form-check-label">Volleinspeisung</span>
                                 </label>
                               </div>
+                              
+                              <div class="form-label">Anschaffungskosten</div>
+                                    <div class="input-group mb-2">
+                                      <input type="text" id="solar-array-cost-input" class="form-control" value="15000" autocomplete="off" />
+                                      <span class="input-group-text">&#8364;</span>
+                                    </div>
+                                    
                               
                             <label class="form-label">
                                 Standort (Bundesland)
@@ -389,20 +409,13 @@
                                 <label class="form-selectgroup-item">
                                   <input type="radio" name="solar-type" id="solar-poly" value="poly" class="form-selectgroup-input" checked />
                                   <span class="form-selectgroup-label"><!-- Download SVG icon from http://tabler.io/icons/icon/home -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon me-1 icon-3">
-                                      <path d="M5 12l-2 0l9 -9l9 9l-2 0"></path>
-                                      <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path>
-                                      <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"></path>
-                                    </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon me-1 icon-3" style="stroke:#0051a2;"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4.28 14h15.44a1 1 0 0 0 .97 -1.243l-1.5 -6a1 1 0 0 0 -.97 -.757h-12.44a1 1 0 0 0 -.97 .757l-1.5 6a1 1 0 0 0 .97 1.243" /><path d="M4 10h16" /><path d="M10 6l-1 8" /><path d="M14 6l1 8" /><path d="M12 14v4" /><path d="M7 18h10" /></svg>
                                     Polykristallin</span>
                                 </label>
                                 <label class="form-selectgroup-item">
                                   <input type="radio" name="solar-type" id="solar-mono" value="mono" class="form-selectgroup-input" />
                                   <span class="form-selectgroup-label"><!-- Download SVG icon from http://tabler.io/icons/icon/user -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon me-1 icon-3">
-                                      <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path>
-                                      <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
-                                    </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon me-1 icon-3" style="stroke:black;"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4.28 14h15.44a1 1 0 0 0 .97 -1.243l-1.5 -6a1 1 0 0 0 -.97 -.757h-12.44a1 1 0 0 0 -.97 .757l-1.5 6a1 1 0 0 0 .97 1.243" /><path d="M4 10h16" /><path d="M10 6l-1 8" /><path d="M14 6l1 8" /><path d="M12 14v4" /><path d="M7 18h10" /></svg>
                                     Monokristallin</span>
                                 </label>
                               </div>
@@ -465,7 +478,7 @@
                                       </div>-->
                                       <div class="col-auto">
                                         <a class="btn btn-primary btn-3" id="to-pumpe">
-                                          <span id="to-pumpe-text">Fertig</span>
+                                          <span id="to-pumpe-text">Weiter</span>
                                           <!-- Download SVG icon from http://tabler.io/icons/icon/arrow-right -->
                                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-end icon-2">
                                             <path d="M5 12l14 0"></path>
@@ -487,36 +500,25 @@
                                 <label class="form-selectgroup-item">
                                   <input type="radio" name="home-type" value="cat-1" class="form-selectgroup-input" checked="">
                                   <span class="form-selectgroup-label"><!-- Download SVG icon from http://tabler.io/icons/icon/home -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon me-1 icon-3">
-                                      <path d="M5 12l-2 0l9 -9l9 9l-2 0"></path>
-                                      <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path>
-                                      <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"></path>
-                                    </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon me-1 icon-3"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3.055 14.328l-.018 -.168l-.004 -.043a11 11 0 0 1 -.047 -1.12c.018 -6.29 4.29 -9.997 13 -9.997h4.014a1 1 0 0 1 1 1l-.002 2.057c-.498 8.701 -4.74 12.943 -11.998 12.943h-2.631a16 16 0 0 0 -.375 2.11a1 1 0 1 1 -1.988 -.22q .174 -1.568 .58 -2.947l-.118 -.146l-.208 -.28l-.157 -.229l-.182 -.293l-.098 -.171l-.065 -.122a6 6 0 0 1 -.397 -.941l-.072 -.237l-.085 -.327l-.057 -.268l-.043 -.242zm8.539 -4.242c-2.845 1.265 -4.854 3.13 -6.108 5.583q .098 .2 .218 .4l.185 .281l.07 .097q .12 .164 .258 .329l.197 .224h.649c1.037 -2.271 2.777 -3.946 5.343 -5.086a1 1 0 0 0 -.812 -1.828" /></svg>
                                     Passivhaus</span>
                                 </label>
                                 <label class="form-selectgroup-item">
                                   <input type="radio" name="home-type" value="cat-2" class="form-selectgroup-input">
                                   <span class="form-selectgroup-label"><!-- Download SVG icon from http://tabler.io/icons/icon/user -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon me-1 icon-3">
-                                      <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path>
-                                      <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
-                                    </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon me-1 icon-3"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20 11l-8 -8l-9 9h2v7a2 2 0 0 0 2 2h5" /><path d="M9 21v-6a2 2 0 0 1 2 -2h2c.325 0 .631 .077 .902 .215" /><path d="M16 22s0 -2 3 -4" /><path d="M19 21a3 3 0 0 1 0 -6h3v3a3 3 0 0 1 -3 3" /></svg>
                                     Niedrigenergiehaus</span>
                                 </label>
                                 <label class="form-selectgroup-item">
                                   <input type="radio" name="home-type" value="cat-3" class="form-selectgroup-input">
                                   <span class="form-selectgroup-label"><!-- Download SVG icon from http://tabler.io/icons/icon/circle -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon me-1 icon-3">
-                                      <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
-                                    </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon me-1 icon-3"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l-2 0l9 -9l9 9l-2 0" /><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" /><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" /></svg>
                                     Normal</span>
                                 </label>
                                 <label class="form-selectgroup-item">
                                   <input type="radio" name="home-type" value="cat-4" class="form-selectgroup-input">
                                   <span class="form-selectgroup-label"><!-- Download SVG icon from http://tabler.io/icons/icon/square -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon me-1 icon-3">
-                                      <path d="M3 3m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z"></path>
-                                    </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon me-1 icon-3"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 19v-2a3 3 0 0 0 -6 0v2a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-14h4v3h3v-3h4v3h3v-3h4v14a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1" /><path d="M3 11l18 0" /></svg>
                                     Altbau</span>
                                 </label>
                               </div>
@@ -536,19 +538,33 @@
                                   <span>400</span>
                               </div>
                               
-                              <div class="form-label">Wirkungsgrad</div>
+                              <div class="form-label">Wirkungsgrad der Wärmepumpe (Jahresarbeitszahl)</div>
                               <div class="input-group mb-2">
                                 <input id="heating-efficiency-input" type="text" class="form-control"
                                   autocomplete="off" value="250"/>
                                 <span class="input-group-text"> % </span>
                               </div>
                               
-                              <div class="form-label">Heizenergiebedarf</div>
-                              <div class="input-group mb-2">
-                                <input type="text" id="energy-use-display" class="form-control" placeholder="" value="1000"
-                                  autocomplete="off" />
-                                <span class="input-group-text"> kWh/a </span>
-                              </div>
+
+                              <div class="row">
+                                  <div class="col-6">
+                                      <div class="form-label">Heizenergiebedarf</div>
+                                      <div class="input-group mb-2">
+                                        <input type="text" id="energy-use-display" class="form-control" placeholder="" value="1000"
+                                          autocomplete="off" />
+                                        <span class="input-group-text"> kWh/a </span>
+                                      </div>
+                                  </div>
+
+                                  <div class="col-6">
+                                    <div class="form-label"> bei &#8960; Bedarf pro m²</div>
+                                    <div class="input-group mb-2">
+                                      <input type="text" id="energy-efficiency-display" class="form-control" value="25" autocomplete="off" readonly disabled />
+                                      <span class="input-group-text">kWh/a/m²</span>
+                                    </div>
+                                  </div>
+
+                                </div>
                               
                               <div class="col-auto">
                                 <a class="btn btn-primary btn-3" id="to-results">
@@ -736,7 +752,7 @@
               <div class="col-lg-auto ms-lg-auto">
                 <ul class="list-inline list-inline-dots mb-0">
                   <li class="list-inline-item"><a href="./info.html" target="_blank" class="link-secondary" rel="noopener">Info</a></li>
-                  <li class="list-inline-item"><a href="./license.html" class="link-secondary">License</a></li>
+                  <li class="list-inline-item"><a href="./license.html" class="link-secondary">Lizenz</a></li>
                   <li class="list-inline-item">
                     <a href="https://github.com/amirleidel/solar-calc" target="_blank" class="link-secondary" rel="noopener">Source code</a>
                   </li>

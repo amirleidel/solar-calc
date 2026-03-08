@@ -25,7 +25,7 @@ document.getElementById("to-pumpe").addEventListener("click", function () {
     else { // default, when there is no heat pump, go straight to results
         document.getElementById("results-card").scrollIntoView({block: "center"});
         document.getElementById("steps-open-2").classList.remove("active");
-        document.getElementById("steps-open-4").classList.add("active");
+        document.getElementById("steps-finish").classList.add("active");
     }
 
 });
@@ -34,18 +34,41 @@ document.getElementById("to-results").addEventListener("click", function () {
 
   document.getElementById("results-card").scrollIntoView({block: "center"});
   document.getElementById("steps-open-3").classList.remove("active");
-  document.getElementById("steps-open-4").classList.add("active");
+  document.getElementById("steps-finish").classList.add("active");
 
 });
+
+const batteryStorageCostInput = document.getElementById("battery-storage-cost-input");
+
+batteryStorageCostInput.addEventListener("change", function () {
+    investments.storage = parseInt(this.value);
+});
+document.getElementById("heat-pump-cost-input").addEventListener("change", function () {
+    investments.heat_pump = parseInt(this.value);
+});
+document.getElementById("solar-array-cost-input").addEventListener("change", function () {
+    investments.solar = parseInt(this.value);
+});
+
 
 document.getElementById("battery-storage-switch").addEventListener("change", function () {
     if (this.checked) {
         model.battery_storage = 1;
+        batteryStorageCostInput.removeAttribute("disabled");
+        batteryStorageCostInput.value = "8000";
+        batteryStorageCostInput.removeAttribute("readonly");
+        investments.storage = parseInt(batteryStorageCostInput.value);
+        
     } else {
         model.battery_storage = 0;
+        batteryStorageCostInput.disabled = true;
+        batteryStorageCostInput.value = "0";
+        batteryStorageCostInput.readonly = true;
+        investments.storage = parseInt(batteryStorageCostInput.value);
     }
 });
 
+const heatPumpCostInput = document.getElementById("heat-pump-cost-input");
 const heatPumpSwitch = document.getElementById("heat-pump-switch");
 const heatPumpTab = document.getElementById("heat-pump-tab");
 
@@ -57,12 +80,22 @@ heatPumpSwitch.addEventListener("change", function () {
         heatPumpTab.removeAttribute("tabindex");
         heatPumpTab.removeAttribute("aria-disabled");
         
+        heatPumpCostInput.removeAttribute("disabled");
+        heatPumpCostInput.value = "15000";
+        heatPumpCostInput.removeAttribute("readonly");
+        investments.heat_pump = parseInt(heatPumpCostInput.value);
+        
     } else {
         model.heat_pump = 0;
         document.getElementById("to-pumpe-text").innerText = "Fertig";
         heatPumpTab.classList.add("disabled");
         heatPumpTab.setAttribute("tabindex", "-1");
         heatPumpTab.setAttribute("aria-disabled", "true");
+        
+        heatPumpCostInput.disabled = true;
+        heatPumpCostInput.value = "0";
+        heatPumpCostInput.readonly = true;
+        investments.heat_pump = parseInt(heatPumpCostInput.value);
     }
 });
 
@@ -82,8 +115,9 @@ const model = {
   home_type : "cat-1",
   heating_efficiency : 2.5,
   battery_storage : 0,
-  heat_pump : 0,
-  feedInType : 1
+  heat_pump : 1,
+  feedInType : 1,
+  annualEnergy : 11154
 };
 
 const usageByPeople = {
@@ -341,6 +375,8 @@ function updateAnnualEnergyDisplay(model) {
 
   // format nicely, optional thousand separator
   inputField.value = Math.round(energy); //.toLocaleString("de-DE");
+  
+  model.annualEnergy = Math.round(energy);
 }
 
 document.getElementById("heading-select").addEventListener("input", function () {
@@ -420,6 +456,7 @@ document.getElementById("heating-efficiency-input").addEventListener("input", fu
     
 });
 
+
 // Energy per area table
 const energyPerArea = {  // kWh/a/m²
   "cat-1": 25,
@@ -449,18 +486,46 @@ function updateHeatingEnergyDisplay(model) {
   const energy = calculateHeatingEnergy(model);
   results.heating_energy = energy;
   
+  const perArea = energyPerArea[model.home_type];
+  
   const inputField = document.getElementById("energy-use-display");
+  const inputEfficiencyField = document.getElementById("energy-efficiency-display");
 
   // format nicely with thousand separator
   inputField.value = Math.round(energy); //.toLocaleString("de-DE");
+  inputEfficiencyField.value = Math.round(perArea);
 }
 
 const results = {
   heating_energy: 0,
   total_use: 0,
   own_use: 0,
-  sold: 0
+  sold: 0,
+  energy_cost : 0,
+  energy_earnings : 0,
+  energy_total : 0,
+  energy_total_without : 0,
+  savings : 0,
+  amortisation : 0
 };
+
+document.getElementById("energy-cost-input").addEventListener("input", function () {
+
+    const energyCostValue = parseInt(this.value);
+    
+    prices.energy = energyCostValue/100;
+    
+});
+
+document.getElementById("feed-in-tariff-input").addEventListener("input", function () {
+
+    const feedInValue = parseInt(this.value);
+    
+    prices.feedIn = feedInValue/100;
+
+});
+
+// start here for final calculations // 
 
 // electrical energy use percentagess
 const usePercentage = {
@@ -478,7 +543,7 @@ function calculateTotalUse(model) {
 
 }
 
-function calculateEnergyFlow(model, energy) {
+function calculateEnergyFlow(model) {
 
   const total_use = results.total_use;
 
@@ -495,15 +560,40 @@ function calculateEnergyFlow(model, energy) {
     percentage = usePercentage.no_own_use;
   }
 
-  let own_use = energy * percentage;
+  let own_use = model.annualEnergy * percentage;
 
   // limit own use to household demand
   if (own_use > total_use) {
     own_use = total_use;
   }
 
-  const sold = energy - own_use;
+  const sold = model.annualEnergy - own_use;
 
   results.own_use = own_use;
   results.sold = sold;
 }
+
+const prices = { // euro/kWh
+    energy : 0.30,
+    feedIn : 0.09
+}
+
+const investments = {
+    solar : 15000,
+    heat_pump : 15000,
+    storage : 0
+}
+
+function calculateCosts(model,prices) {
+  
+  results.energy_cost = (results.total_use-results.own_use)*prices.energy;
+  results.energy_earnings = results.sold*prices.feedIn;
+  results.energy_total = results.energy_earnings - results.energy_cost // if positive earnings
+  results.energy_total_without = results.total_use*prices.energy;
+  results.savings = results.energy_total - results.energy_total_without;
+  //results.amortisation : 0
+  
+}
+
+
+
