@@ -627,55 +627,6 @@
                   </div>
                 </div>
                 
-                <script>
-                  document.addEventListener("DOMContentLoaded", function() {
-                    window.ApexCharts && (new ApexCharts(document.getElementById(
-                      'chart-demo-pie'), {
-                      chart: {
-                        type: "donut",
-                        fontFamily: 'inherit',
-                        height: 240,
-                        sparkline: {
-                          enabled: true
-                        },
-                        animations: {
-                          enabled: false
-                        },
-                      },
-                      series: [44, 55, 12, 2],
-                      labels: ["Direct", "Affilliate", "E-mail", "Other"],
-                      tooltip: {
-                        theme: 'dark'
-                      },
-                      grid: {
-                        strokeDashArray: 4,
-                      },
-                      colors: [
-                        'color-mix(in srgb, transparent, var(--tblr-primary) 100%)',
-                        'color-mix(in srgb, transparent, var(--tblr-primary) 80%)',
-                        'color-mix(in srgb, transparent, var(--tblr-primary) 60%)',
-                        'color-mix(in srgb, transparent, var(--tblr-gray-300) 100%)'
-                      ],
-                      legend: {
-                        show: true,
-                        position: 'bottom',
-                        offsetY: 12,
-                        markers: {
-                          width: 10,
-                          height: 10,
-                          radius: 100,
-                        },
-                        itemMargin: {
-                          horizontal: 8,
-                          vertical: 8
-                        },
-                      },
-                      tooltip: {
-                        fillSeriesColor: false
-                      },
-                    })).render();
-                  });
-                </script>
 
                 <script>
                     document.addEventListener("DOMContentLoaded", function () {

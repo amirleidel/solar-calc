@@ -598,6 +598,70 @@ function calculateCosts(model,prices,investments) {
   
 }
 
+let energyChart;
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  if (window.ApexCharts) {
+
+    energyChart = new ApexCharts(
+      document.getElementById('chart-demo-pie'),
+      {
+        chart: {
+          type: "donut",
+          fontFamily: 'inherit',
+          height: 240,
+          sparkline: { enabled: true },
+          animations: { enabled: true }
+        },
+
+        series: [44, 55, 5],
+
+        labels: ["Eigenverbrauch", "Einspeisung", "Ankauf"],
+
+        colors: [
+          '#066fd1',
+          '#2fb344',
+          '#d63939'
+        ],
+
+        legend: {
+          show: true,
+          position: 'left',
+          offsetY: 12,
+          markers: {
+            width: 10,
+            height: 10,
+            radius: 100
+          },
+          itemMargin: {
+            horizontal: 8,
+            vertical: 8
+          }
+        },
+
+        grid: { strokeDashArray: 4 },
+
+        tooltip: {
+          theme: 'light',
+          fillSeriesColor: true
+        }
+      }
+    );
+
+    energyChart.render();
+  }
+});
+
+function updateEnergyChart() {
+
+  energyChart.updateSeries([
+    Math.round(results.own_use),
+    Math.round(results.sold),
+    Math.round(results.total_use-results.own_use)
+  ]);
+
+}
 
 function finish(model,prices,investments) {
   calculateTotalUse(model);
@@ -609,5 +673,5 @@ function finish(model,prices,investments) {
   document.getElementById("energy-earnings-display").innerText = Math.round(results.energy_earnings);
   document.getElementById("amortisation-display").innerText = Math.round(results.amortisation);
   
-  
+  updateEnergyChart();
 }
