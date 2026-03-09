@@ -708,4 +708,144 @@ function finish(model,prices,investments) {
   //document.getElementById("amortisation-display").innerText = Math.round(results.amortisation);
   
   updateEnergyChart();
+  updateFinanceChart();
+}
+
+let financeChart;
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  if (!window.ApexCharts) return;
+
+  financeChart = new ApexCharts(
+    document.getElementById("chart-demo-line"),
+    {
+      chart: {
+        height: 260,
+        type: "line",
+        fontFamily: "inherit",
+        toolbar: { show: false }
+      },
+
+      series: [
+        {
+          name: "Kosten",
+          type: "column",
+          data: []
+        },
+        {
+          name: "Einnahmen",
+          type: "column",
+          data: []
+        },
+        {
+          name: "Kumulierte Bilanz",
+          type: "line",
+          data: []
+        }
+      ],
+
+      stroke: {
+        width: [0, 0, 3],
+        curve: "straight"
+      },
+
+      plotOptions: {
+        bar: {
+          columnWidth: "50%"
+        }
+      },
+
+      colors: [
+        "#d63939", // costs red
+        "#2fb344", // earnings green
+        "#066fd1"  // balance blue
+      ],
+
+      xaxis: {
+        categories: Array.from({ length: 25 }, (_, i) => "Jahr " + (i + 1))
+      },
+
+      yaxis: {
+        labels: {
+          formatter: (v) => Math.round(v) + " €"
+        }
+      },
+
+      tooltip: {
+        theme: "light"
+      },
+
+      legend: {
+        position: "bottom"
+      },
+
+      grid: {
+        strokeDashArray: 4
+      }
+    }
+  );
+
+  financeChart.render();
+
+});
+
+function calculateFinanceSeries(results, investments) {
+
+  const years = 25;
+
+  const costs = [];
+  const earnings = [];
+  const balance = [];
+
+  let cumulative = 0;
+
+  const initialInvestment =
+    investments.solar +
+    investments.heat_pump +
+    investments.storage;
+
+  for (let year = 0; year < years; year++) {
+
+    let yearlyCost = results.energy_cost;
+
+    if (year === 0) {
+      yearlyCost += initialInvestment;
+    }
+
+    let yearlySavings = results.savings;
+
+    costs.push(-yearlyCost);
+    earnings.push(yearlySavings);
+
+    cumulative += yearlySavings - yearlyCost;
+
+    balance.push(cumulative);
+  }
+
+  return { costs, earnings, balance };
+}
+
+function updateFinanceChart() {
+
+  const data = calculateFinanceSeries(results, investments);
+
+  financeChart.updateSeries([
+    {
+      name: "Kosten",
+      type: "column",
+      data: data.costs
+    },
+    {
+      name: "Ersparnis",
+      type: "column",
+      data: data.earnings
+    },
+    {
+      name: "Kumulierte Bilanz",
+      type: "line",
+      data: data.balance
+    }
+  ]);
+
 }
