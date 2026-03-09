@@ -303,8 +303,8 @@ const solarTypeRadios = document.querySelectorAll('input[name="solar-type"]');
 solarTypeRadios.forEach(radio => {
   radio.addEventListener("change", function () {
     if (this.checked) {
-      model.solarType = this.value; // "mono" or "poly"
-      console.log("Solar type selected:", model.solarType);
+      model.solar_type = this.value; // "mono" or "poly"
+      console.log("Solar type selected:", model.solar_type);
       console.log("Solar type selected:", model);
       // TODO : add poly-mono distinction
       //
@@ -363,7 +363,12 @@ function calculateAnnualEnergy(model) {
   // tilt
   const tiltEff = tiltEffectivity(model.tilt); // 0-1
   // combined effectivity
-  const effectivity = 0.6 * facingEff * tiltEff; // factor 0.6 as per Python comment
+  
+  let effectivity = 0.6 * facingEff * tiltEff; // factor 0.6 as per Python comment
+
+  if (model.solar_type == "mono") {
+      effectivity = 0.7 * facingEff * tiltEff;
+  }
 
   // energy in kWh
   const energy = model.sun_hours * model.peak_power * effectivity;
