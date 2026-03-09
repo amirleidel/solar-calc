@@ -221,7 +221,7 @@
                         </style>
                         <div id="tab-top-1" class="card fade tab-pane active show">
                           <div class="card-body">
-                            
+                              <div class="mb-3">
                               <div class="form-label">Anzahl Bewohner</div>
                               <div class="btn-group w-100" role="group">
                                         <input type="radio" class="btn-check" name="btn-radio-dropdown" id="btn-radio-dropdown-1" autocomplete="off" checked="" value="1">
@@ -259,14 +259,16 @@
                                         </div>
                                         
                               </div>
-                              
+                              </div>
+                              <div class="mb-3">
                               <div class="form-label">Geschätzter Verbrauch</div>
                               <div class="input-group mb-2">
                                 <input type="text" class="form-control" placeholder=""
                                   autocomplete="off" id="consumption-input" />
                                 <span class="input-group-text"> kWh/a </span>
                               </div>
-                              
+                              </div>
+                              <div class="mb-3">
                                 <div class="row">
                                   
                                   <div class="col-6">
@@ -286,7 +288,8 @@
                                   </div>
 
                                 </div>
-                              
+                              </div>
+                              <div class="mb-3">
                               <div class="form-label">Weiteres</div>
                               <label class="form-check form-switch">
                                 <input class="form-check-input" id="battery-storage-switch" type="checkbox" />
@@ -298,7 +301,8 @@
                                       <input type="text" id="battery-storage-cost-input" class="form-control" value="--" autocomplete="off" readonly disabled />
                                       <span class="input-group-text">&#8364;</span>
                                     </div>
-                                    
+                              </div>
+                              <div class="mb-3">
                               <label class="form-check form-switch">
                                 <input class="form-check-input" id="heat-pump-switch" type="checkbox" checked />
                                 <span class="form-check-label">Wärmepumpe</span>
@@ -308,7 +312,7 @@
                                       <input type="text" id="heat-pump-cost-input" class="form-control" value="15000" autocomplete="off" />
                                       <span class="input-group-text">&#8364;</span>
                                     </div>
-                              
+                              </div>
                               <div class="row align-items-center">
                                       <!--<div class="col">
                                       
@@ -331,12 +335,11 @@
                                       </div>
                               </div>
                               
-                            
-                          </div>
+                        </div>
                         </div>
                         <div id="tab-top-2" class="card fade tab-pane">
                           <div class="card-body">
-                            
+                              <div class="mb-3">
                               <div class="form-label">Art der Anlage</div>
                               <div>
                                 <label class="form-check form-check-inline">
@@ -349,14 +352,15 @@
                                   <span class="form-check-label">Volleinspeisung</span>
                                 </label>
                               </div>
-                              
+                              </div>
+                              <div class="mb-3">
                               <div class="form-label">Anschaffungskosten</div>
                                     <div class="input-group mb-2">
                                       <input type="text" id="solar-array-cost-input" class="form-control" value="15000" autocomplete="off" />
                                       <span class="input-group-text">&#8364;</span>
                                     </div>
-                                    
-                              
+                              </div>
+                              <div class="mb-3">
                             <label class="form-label">
                                 Standort (Bundesland)
                                 <span class="form-help" data-bs-toggle="popover" data-bs-placement="top"
@@ -381,7 +385,8 @@
                                 <option value="15">Schleswig-Holstein</option>
                                 <option value="16">Thüringen</option>
                               </select>
-                              
+                              </div>
+                              <div class="mb-3">
                               
                               
                               <div class="form-label">Leistung: <span id="peak-power-display"> 10 </span> kWp </div>
@@ -403,7 +408,8 @@
                                   <span>40</span>
                                   <span>50</span>
                                 </div>
-                                
+                                </div>
+                              <div class="mb-3">
                             <label class="form-label">Solarpanel-Typ</label>
                             <div class="form-selectgroup">
                                 <label class="form-selectgroup-item">
@@ -415,11 +421,18 @@
                                 <label class="form-selectgroup-item">
                                   <input type="radio" name="solar-type" id="solar-mono" value="mono" class="form-selectgroup-input" />
                                   <span class="form-selectgroup-label"><!-- Download SVG icon from http://tabler.io/icons/icon/user -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon me-1 icon-3" style="stroke:black;"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4.28 14h15.44a1 1 0 0 0 .97 -1.243l-1.5 -6a1 1 0 0 0 -.97 -.757h-12.44a1 1 0 0 0 -.97 .757l-1.5 6a1 1 0 0 0 .97 1.243" /><path d="M4 10h16" /><path d="M10 6l-1 8" /><path d="M14 6l1 8" /><path d="M12 14v4" /><path d="M7 18h10" /></svg>
+                                    <?xml version="1.0" encoding="utf-8"?>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon me-1 icon-3" style="stroke:black;">
+                                      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                      <path d="M4.28 14h15.44a1 1 0 0 0 .97 -1.243l-1.5 -6a1 1 0 0 0 -.97 -.757h-12.44a1 1 0 0 0 -.97 .757l-1.5 6a1 1 0 0 0 .97 1.243"/>
+                                      <path d="M12 14v4"/>
+                                      <path d="M7 18h10"/>
+                                    </svg>
                                     Monokristallin</span>
                                 </label>
                               </div>
-                              
+                              </div>
+                              <div class="mb-3">
                                 
                               <div class="form-label">Ausrichtung: <span id="heading-display">180</span>° </div>
                               <input type="range" id="heading-select" class="form-range mb-2" value="180" min="0" max="360" step="10">
@@ -444,7 +457,8 @@
                                   <span>W</span>
                                   <span>N</span>
                               </div>
-                              
+                              </div>
+                              <div class="mb-3">
                               <div class="form-label">Neigung: <span id="tilt-display">33</span>° </div>
                               <input type="range" id="tilt-select" class="form-range mb-2" value="33" min="0" max="90" step="1">
                               <div class="d-flex justify-content-between small text-secondary"
@@ -457,14 +471,15 @@
                                   <span>75°</span>
                                   <span>90°</span>
                               </div>
-                              
+                              </div>
+                              <div class="mb-3">
                               <div class="form-label">Geschätzter Energiegewinn</div>
                               <div class="input-group mb-2">
                                 <input type="text" id="annual-energy-display" class="form-control" placeholder=""
                                   autocomplete="off" value="11154" />
                                 <span class="input-group-text"> kWh/a </span>
                               </div>
-                              
+                              </div>
                               
                               
                               <div class="row align-items-center">
@@ -495,6 +510,7 @@
                         </div>
                         <div id="tab-top-3" class="card fade tab-pane">
                           <div class="card-body">
+                            <div class="mb-3">
                             <label class="form-label">Gebäudekategorie</label>
                             <div class="form-selectgroup">
                                 <label class="form-selectgroup-item">
@@ -522,7 +538,8 @@
                                     Altbau</span>
                                 </label>
                               </div>
-                              
+                              </div>
+                              <div class="mb-3">
                               <div class="form-label">Beheizte Wohnfläche: <span id="area-display"> 100 </span> m² </div>
                               <input type="range" id="area-select" class="form-range mb-2" value="100" min="0" max="400" step="10">
                               <div class="d-flex justify-content-between small text-secondary"
@@ -537,14 +554,16 @@
                                   <span>350</span>
                                   <span>400</span>
                               </div>
-                              
+                              </div>
+                              <div class="mb-3">
                               <div class="form-label">Wirkungsgrad der Wärmepumpe (Jahresarbeitszahl)</div>
                               <div class="input-group mb-2">
                                 <input id="heating-efficiency-input" type="text" class="form-control"
                                   autocomplete="off" value="250"/>
                                 <span class="input-group-text"> % </span>
                               </div>
-                              
+                              </div>
+                              <div class="mb-3">
 
                               <div class="row">
                                   <div class="col-6">
@@ -565,7 +584,7 @@
                                   </div>
 
                                 </div>
-                              
+                              </div>
                               <div class="col-auto">
                                 <a class="btn btn-primary btn-3" id="to-results">
                                   Fertig
@@ -604,22 +623,35 @@
                       <span id="steps-finish" class="step-item"> Fertig </span>
                     </div>
                     
+                    <style>
+                    .counter-animate {
+                      display: inline-block;
+                      transform: translateY(-10px);
+                      opacity: 0;
+                      transition: transform 0.35s ease, opacity 0.35s ease;
+                    }
+
+                    .counter-animate.show {
+                      transform: translateY(0);
+                      opacity: 1;
+                    }
+                    </style>
                     <div class="row">
                       <div class="col-sm6 col-lg-3">
                         <div class="subheader">Stromkosten</div>
-                        <div class="h1"><span id="energy-cost-display"> </span> &#8364;/a</div>
+                        <div class="h1"><span class="counter-animate" id="energy-cost-display">0 </span> &#8364;/a</div>
                       </div>
                       <div class="col-sm6 col-lg-3">
                         <div class="subheader">Ersparnis</div>
-                        <div class="h1"><span id="savings-display"> </span> &#8364;/a</div>
+                        <div class="h1"><span class="counter-animate" id="savings-display">0 </span> &#8364;/a</div>
                       </div>
                       <div class="col-sm6 col-lg-3">
                         <div class="subheader">Einspeiseverdienst</div>
-                        <div class="h1"><span id="energy-earnings-display"> </span> &#8364;/a</div>
+                        <div class="h1"><span class="counter-animate" id="energy-earnings-display">0 </span> &#8364;/a</div>
                       </div>
                       <div class="col-sm6 col-lg-3">
                         <div class="subheader">Amortisationszeit</div>
-                        <div class="h1"><span id="amortisation-display"> </span> a</div>
+                        <div class="h1"><span class="counter-animate" id="amortisation-display">0 </span> a</div>
                       </div>
                     </div>
                     <div id="chart-demo-pie" class="position-relative "></div>

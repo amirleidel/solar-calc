@@ -663,15 +663,48 @@ function updateEnergyChart() {
 
 }
 
+function animateDisplay(value,id) {
+
+  const el = document.getElementById(id);
+
+  const duration = 400; // ms
+  const start = 0;
+  const startTime = performance.now();
+
+  el.classList.remove("show");
+
+  function update(now) {
+
+    const progress = Math.min((now - startTime) / duration, 1);
+
+    const current = Math.floor(start + (value - start) * progress);
+
+    el.textContent = current; //.toLocaleString("de-DE");
+
+    if (progress < 1) {
+      requestAnimationFrame(update);
+    } else {
+      el.classList.add("show");
+    }
+  }
+
+  requestAnimationFrame(update);
+}
+
 function finish(model,prices,investments) {
   calculateTotalUse(model);
   calculateEnergyFlow(model);
   calculateCosts(model,prices,investments);
   
-  document.getElementById("energy-cost-display").innerText = Math.round(results.energy_cost);
-  document.getElementById("savings-display").innerText = Math.round(results.savings);
-  document.getElementById("energy-earnings-display").innerText = Math.round(results.energy_earnings);
-  document.getElementById("amortisation-display").innerText = Math.round(results.amortisation);
+  animateDisplay(Math.round(results.energy_cost),"energy-cost-display");
+  animateDisplay(Math.round(results.savings),"savings-display");
+  animateDisplay(Math.round(results.energy_earnings),"energy-earnings-display");
+  animateDisplay(Math.round(results.amortisation),"amortisation-display");
+  
+  //document.getElementById("energy-cost-display").innerText = Math.round(results.energy_cost);
+  //document.getElementById("savings-display").innerText = Math.round(results.savings);
+  //document.getElementById("energy-earnings-display").innerText = Math.round(results.energy_earnings);
+  //document.getElementById("amortisation-display").innerText = Math.round(results.amortisation);
   
   updateEnergyChart();
 }
