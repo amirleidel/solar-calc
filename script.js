@@ -817,8 +817,12 @@ function calculateFinanceSeries(results, investments) {
 
     costs.push(-yearlyCost);
     earnings.push(yearlySavings);
-
-    cumulative += yearlySavings - yearlyCost;
+    
+    if (year === 0) {
+      cumulative += yearlySavings - initialInvestment;
+    }
+    cumulative += yearlySavings;
+    
 
     balance.push(cumulative);
   }
