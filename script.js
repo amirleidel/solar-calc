@@ -566,6 +566,7 @@ function calculateEnergyFlow(model) {
   let own_use = model.annualEnergy * percentage;
 
   // limit own use to household demand
+  console.log(own_use,total_use);
   if (own_use > total_use) {
     own_use = total_use;
   }
